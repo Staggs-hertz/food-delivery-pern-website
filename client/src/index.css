@@ -10,3 +10,14 @@
   --color-primary: #49557e;
   --color-secondary: #ff6347;
 }
+
+@layer utilities {
+  /* Chrome, Safari and Opera*/
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
