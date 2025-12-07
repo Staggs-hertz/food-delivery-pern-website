@@ -9,6 +9,7 @@
 @theme {
   --color-primary: #49557e;
   --color-secondary: #ff6347;
+  --color-footer: #323232;
 }
 
 @layer utilities {
