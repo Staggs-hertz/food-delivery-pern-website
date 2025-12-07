@@ -1,6 +1,6 @@
 import StoreContext from "./StoreContext";
 import { food_list } from "../assets/assets";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 //A provider like the one below supplies the data
 const StoreContextProvider = ({ children }) => {
@@ -20,10 +20,6 @@ const StoreContextProvider = ({ children }) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
   };
-
-  useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems]);
 
   const contextValue = {
     food_list,

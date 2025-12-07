@@ -10,16 +10,20 @@ const FoodDisplay = ({ category }) => {
         Top dishes near you
       </h2>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] mt-7.5 gap-7.5 gap-y-12">
-        {food_list.map((item, index) => (
-          <FoodDispayItem
-            key={index}
-            id={item._id}
-            name={item.name}
-            description={item.description}
-            price={item.price}
-            image={item.image}
-          />
-        ))}
+        {food_list
+          // the filter function here filters the food_list array based on the value of category into a new array
+          .filter((item) => category === "All" || category === item.category)
+          //the map function maps through the array that is created by the filter function
+          .map((item, index) => (
+            <FoodDispayItem
+              key={index}
+              id={item._id}
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              image={item.image}
+            />
+          ))}
       </div>
     </div>
   );
