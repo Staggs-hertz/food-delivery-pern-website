@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <div className="text-gray-400 bg-footer flex flex-col items-center gap-5 pt-20 pb-5 px-[8vw] mt-25">
-      <div className="w-full gap-20 grid grid-cols-[2fr_1fr_1fr]">
+      <div className="w-full gap-20 grid grid-cols-[2fr_1fr_1fr] max-md:flex max-md:flex-col max-md:gap-8">
         {/* footer-content-left */}
         <div className="flex flex-col items-start gap-5">
           <img src={assets.logo} alt="" />
@@ -43,7 +43,9 @@ const Footer = () => {
       </div>
       <hr className="w-full h-0.5 my-5 bg-gray-400 border-none" />
       {/* footer-copyright */}
-      <p>Copyright {currentYear} @ Tomato.com - All Rights Reserved.</p>
+      <p className="max-md:text-center">
+        Copyright {currentYear} @ Tomato.com - All Rights Reserved.
+      </p>
     </div>
   );
 };

@@ -8,12 +8,12 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeIn" }}
-        className="absolute flex flex-col items-start gap-[1.5vw] max-w-[50%] bottom-[10%] left-[6vw]"
+        className="absolute flex flex-col items-start gap-[1.5vw] max-w-[50%] sm:max-w-[65%] bottom-[10%] left-[6vw]"
       >
         <h2 className="font-semibold text-white text-[max(4.5vw,22px)]">
           Order your favourite food here
         </h2>
-        <p className="text-white text-[1vw]">
+        <p className="text-white text-[1vw] max-sm:hidden">
           Choose from a diverse menu featuring a delectable array of dishes
           crafted with the finest ingredients and culinary expertise. Our
           mission is to satisfy your cravings and elevate your dining
