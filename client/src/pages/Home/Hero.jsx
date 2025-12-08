@@ -4,10 +4,11 @@ import { motion } from "motion/react";
 const Hero = () => {
   return (
     <div className="h-[34vw] mx-auto my-7.5 bg-[url(../../../header_img.png)] bg-contain bg-no-repeat relative">
+      <div className="absolute inset-0 bg-black opacity-18 h-[33.5vw] rounded-2xl" />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, ease: "easeIn" }}
+        transition={{ duration: 1, ease: "easeIn" }}
         className="absolute flex flex-col items-start gap-[1.5vw] max-w-[50%] sm:max-w-[65%] bottom-[10%] left-[6vw]"
       >
         <h2 className="font-semibold text-white text-[max(4.5vw,22px)]">

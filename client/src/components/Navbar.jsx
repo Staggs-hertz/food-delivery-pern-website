@@ -2,7 +2,7 @@ import { useState } from "react";
 import { assets } from "../assets/assets";
 import { Link, NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ setShowLogin }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -73,7 +73,10 @@ const Navbar = () => {
           {/* The dot that displays when a product is added to the cart */}
           <div className="absolute min-w-2.5 min-h-2.5 bg-secondary rounded-full -top-2 -right-2" />
         </div>
-        <button className="bg-transparent text-sm text-primary border border-secondary py-2.5 px-7.5 rounded-4xl cursor-pointer hover:bg-red-100 transition-colors duration-400">
+        <button
+          className="bg-transparent text-sm text-primary border border-secondary py-2.5 px-7.5 rounded-4xl cursor-pointer hover:bg-red-100 transition-colors duration-400"
+          onClick={() => setShowLogin(true)}
+        >
           Sign In
         </button>
 
