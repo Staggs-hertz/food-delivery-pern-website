@@ -1,4 +1,5 @@
 import { menu_list } from "../../assets/assets";
+import HLine from "../../components/HLine";
 import ExploreMenuItem from "./ExploreMenuItem";
 
 const ExploreMenu = ({ category, setCategory }) => {
@@ -24,7 +25,7 @@ const ExploreMenu = ({ category, setCategory }) => {
         ))}
       </div>
 
-      <hr className="h-0.5 my-2.5 mx-0 bg-gray-200 border-none" />
+      <HLine />
     </div>
   );
 };

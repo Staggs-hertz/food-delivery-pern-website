@@ -8,7 +8,7 @@ const ExploreMenuItem = ({ src, name, category, setCategory }) => {
         }`}
         src={src}
       />
-      <p className="mt-2.5 text-gray-400 text-[max(1.4vw,16px)] cursor-pointer">
+      <p className="mt-2.5 text-gray-500 text-[max(1.4vw,16px)] cursor-pointer">
         {name}
       </p>
     </div>
