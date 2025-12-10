@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { assets } from "../assets/assets";
+import InputBox from "./InputBox";
 
 const LoginPopup = ({ setShowLogin }) => {
   //state to change form title and custom button when users want to login or sign up
@@ -26,31 +27,13 @@ const LoginPopup = ({ setShowLogin }) => {
         </div>
 
         {/* form inputs */}
-        <div className="flex flex-col gap-5 *:outline-none *:border *:border-[#c9c9c9] *:p-2.5 *:rounded">
+        <div className="flex flex-col gap-5 *:outline-none">
           {currState === "Sign Up" && (
-            <input
-              type="text"
-              name="fullname"
-              placeholder="Your fullname"
-              id=""
-              required
-            />
+            <InputBox type="text" name="fullname" placeholder="Your fullname" />
           )}
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Your email"
-            id=""
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            id=""
-            required
-          />
+          <InputBox type="email" name="email" placeholder="Your email" />
+          <InputBox type="password" name="password" placeholder="Password" />
         </div>
         <button className="border-none p-2.5 rounded text-white bg-secondary text-[15px] cursor-pointer">
           {currState === "Sign Up" ? "Create account" : "Login"}
