@@ -1,11 +1,9 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import HLine from "../../components/HLine";
 import StoreContext from "../../context/StoreContext";
 
-const CartTotalPriceSection = ({ buttonType }) => {
+const CartTotalPriceSection = ({ buttonType, func }) => {
   const { getTotalCartAmount } = useContext(StoreContext);
-  const navigate = useNavigate();
 
   return (
     <div className="flex flex-1 flex-col gap-5">
@@ -27,7 +25,7 @@ const CartTotalPriceSection = ({ buttonType }) => {
         </div>
       </div>
       <button
-        onClick={() => navigate("/order")}
+        onClick={func}
         className="border-none text-white bg-secondary w-[max(15vw,250px)] py-3 px-0 mt-6 rounded cursor-pointer hover:scale-105 duration-300 ease-in"
       >
         {buttonType}
