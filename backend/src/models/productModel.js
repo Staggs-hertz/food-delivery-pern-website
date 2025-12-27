@@ -29,4 +29,15 @@ export const ProductModel = {
     const result = await pool.query(query, values);
     return result.rows;
   },
+
+  postProducts: async (props) => {
+    const { name, description, price, image_url, category_id } = props;
+
+    const query = `INSERT INTO products(name, description, price, image_url, category_id)
+    VALUES ($1, $2, $3, $4, $5)`;
+
+    const values = [name, description, price, image_url, category_id];
+    const result = await pool.query(query, values);
+    return result.rows[0];
+  },
 };
