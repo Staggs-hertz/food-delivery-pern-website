@@ -96,3 +96,37 @@ export const getProfile = (req, res) => {
     res.status(500).json({ success: false, error: "Failed to fetch profile" });
   }
 };
+
+// DELETE MY ACCOUNT
+export const deleteMyAccount = (req, res) => {
+  try {
+    console.log(req.user);
+    const userId = req.user.id;
+    UserModel.deleteById(userId);
+
+    // Clear session
+    res.clearCookie("token");
+    res
+
+      .status(200)
+      .json({ success: true, message: "Account deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, error: "Failed to delete account" });
+  }
+};
+
+//DELETE AN USERS BY ADMIN
+export const deleteUserByAdmin = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await UserModel.deleteById(id);
+
+    res.json({
+      success: true,
+      message: "User deleted by admin",
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: "Failed to delete user" });
+  }
+};

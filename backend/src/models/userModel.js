@@ -30,4 +30,11 @@ export const UserModel = {
     const { rows } = await pool.query(query, [id]);
     return rows[0];
   },
+
+  //Delete a user by id
+  deleteById: async (userId) => {
+    const query = `DELETE FROM users WHERE id = $1`;
+
+    const { rows } = await pool.query(query, [userId]);
+  },
 };
