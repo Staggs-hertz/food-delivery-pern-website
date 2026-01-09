@@ -1,9 +1,11 @@
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import CartTotalPriceSection from "../Cart/CartTotalPriceSection";
 import PlaceOrderForm from "./PlaceOrderForm";
 
 const PlaceOrder = () => {
+  useDocumentTitle("Food Delivery - Order");
   return (
-    <form className="flex items-start justify-between max-md:flex-col gap-12.5 mt-25">
+    <form className="flex items-start justify-between max-md:flex-col gap-12.5 mt-25 w-4/5 mx-auto">
       {/* left side */}
       <PlaceOrderForm />
 
