@@ -1,3 +1,5 @@
+import BlackButton from "../../components/BlackButton";
+
 const CartPromoSection = () => {
   return (
     <div className="flex-1">
@@ -9,9 +11,8 @@ const CartPromoSection = () => {
             placeholder="promo code"
             className="bg-transparent border-none outline-none pl-2.5"
           />
-          <button className="w-[max(10vw,150px)] py-3 px-1.5 bg-black border-none text-white rounded">
-            Submit
-          </button>
+
+          <BlackButton content="Submit" />
         </div>
       </div>
     </div>
