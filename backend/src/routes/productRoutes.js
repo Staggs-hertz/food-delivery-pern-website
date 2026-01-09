@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createProduct,
+  deleteProduct,
   getProducts,
 } from "../controllers/productController.js";
 import { adminOnly, protect } from "../middleware/auth.middleware.js";
@@ -14,10 +15,12 @@ productRoutes.get("/", getProducts);
 //Admin only
 productRoutes.post(
   "/create",
-  protect,
-  adminOnly,
+  // protect,
+  // adminOnly,
   upload.single("image_url"),
   createProduct
 );
+
+productRoutes.delete("/:id", protect, adminOnly, deleteProduct);
 
 export default productRoutes;

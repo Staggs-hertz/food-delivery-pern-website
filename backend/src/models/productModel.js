@@ -30,6 +30,15 @@ export const ProductModel = {
     return result.rows;
   },
 
+  findProductById: async (id) => {
+    const result = await pool.query(
+      `SELECT id, name, price FROM products WHERE id = $1`,
+      [id]
+    );
+
+    return result.rows[0];
+  },
+
   postProducts: async (props) => {
     const { name, description, price, image_url, category_id } = props;
 
@@ -39,5 +48,9 @@ export const ProductModel = {
     const values = [name, description, price, image_url, category_id];
     const result = await pool.query(query, values);
     return result.rows[0];
+  },
+
+  deleteProduct: async (id) => {
+    await pool.query(`DELETE FROM products WHERE id = $1`, [id]);
   },
 };
