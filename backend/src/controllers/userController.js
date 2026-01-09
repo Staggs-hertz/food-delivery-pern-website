@@ -7,12 +7,14 @@ export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    // Checking if all fields are filled
     if (!name || !email || !password) {
       return res
         .status(400)
         .json({ success: false, message: "All fields required" });
     }
 
+    // Checking if the inputted email is already in use
     const existingUser = await UserModel.findByEmail(email);
     if (existingUser) {
       return res
@@ -20,11 +22,30 @@ export const registerUser = async (req, res) => {
         .json({ success: false, message: "Email already in use" });
     }
 
+    // Hash the inputted password
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const user = await UserModel.createUser(name, email, hashedPassword);
 
-    res.status(201).json({ success: true, data: user });
+    // Automatically generates token and logs new user in
+    const token = generateToken(user.id);
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV,
+      maxAge: 1000 * 60 * 60 * 24 * 3,
+    });
+
+    res.status(201).json({
+      success: true,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: "Registration failed" });
   }
@@ -62,7 +83,7 @@ export const loginUser = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "lax",
       secure: process.env.NODE_ENV,
       maxAge: 1000 * 60 * 60 * 24 * 3,
     });
