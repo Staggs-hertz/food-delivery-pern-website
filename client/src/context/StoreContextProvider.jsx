@@ -6,6 +6,9 @@ import { useState } from "react";
 const StoreContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
 
+  // The backend url to be used to link frontend to backend
+  const url = "http://localhost:5000";
+
   //This function checks if the id of a product (itemId) exists in the cart (cartItems) which is an object
   const addToCart = (itemId) => {
     if (!cartItems[itemId]) {
@@ -53,6 +56,7 @@ const StoreContextProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     getTotalCartAmount,
+    url,
   };
 
   return (
