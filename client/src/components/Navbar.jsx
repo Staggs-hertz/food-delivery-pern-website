@@ -2,13 +2,17 @@ import { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link, NavLink } from "react-router-dom";
 import StoreContext from "../context/StoreContext";
+import AuthContext from "../context/AuthContext";
 
 const Navbar = ({ setShowLogin }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { getTotalCartAmount } = useContext(StoreContext);
+  const { user, loading, logoutUser } = useContext(AuthContext);
+
+  if (loading) return null;
 
   return (
-    <div className="py-5 flex justify-between items-center">
+    <div className="py-5 flex justify-between items-center w-4/5 mx-auto">
       <Link to="/">
         <img
           src={assets.logo}
@@ -72,7 +76,11 @@ const Navbar = ({ setShowLogin }) => {
 
       {/* Right side of navbar */}
       <div className="flex items-center gap-10 max-md:gap-5.5">
-        <img src={assets.search_icon} className="w-[22px] max-md:w-5" alt="" />
+        <img
+          src={assets.search_icon}
+          className="w-[22px] max-md:w-5 cursor-pointer"
+          alt=""
+        />
         <div className="relative">
           <Link to="/cart">
             <img
@@ -90,12 +98,29 @@ const Navbar = ({ setShowLogin }) => {
             }`}
           />
         </div>
-        <button
-          className="bg-transparent text-sm text-primary border border-secondary py-2.5 max-md:py-2 px-7.5 max-md:px-7 rounded-4xl cursor-pointer hover:bg-red-100 transition-colors duration-400"
-          onClick={() => setShowLogin(true)}
-        >
-          Sign In
-        </button>
+        {!user ? (
+          <button
+            className="bg-transparent text-sm text-primary border border-secondary py-2.5 max-md:py-2 px-7.5 max-md:px-7 rounded-4xl cursor-pointer hover:bg-red-100 transition-colors duration-400"
+            onClick={() => setShowLogin(true)}
+          >
+            Sign Up
+          </button>
+        ) : (
+          <div className="relative group">
+            <img src={assets.profile_icon} />
+            <ul className="absolute hidden z-10 bg-white shadow-lg group-hover:block flex-col gap-2.5 py-3 pl-3 pr-9 rounded border border-secondary outline-2 outline-white *:flex *:items-center *:gap-2.5 *:cursor-pointer">
+              <li>
+                <img src={assets.bag_icon} className="w-5" />
+                <p className="hover:text-secondary">Orders</p>
+              </li>
+              <hr className="mt-2 mb-2" />
+              <li onClick={logoutUser}>
+                <img src={assets.logout_icon} className="w-5" />
+                <p className="hover:text-secondary">Logout</p>
+              </li>
+            </ul>
+          </div>
+        )}
 
         {/* the open hamburger icon for the sidebar */}
         <img
