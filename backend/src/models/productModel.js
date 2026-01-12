@@ -13,7 +13,8 @@ export const ProductModel = {
     c.name AS category
     FROM products p
     JOIN categories c
-    ON p.category_id = c.id`;
+    ON p.category_id = c.id
+    ORDER BY p.created_at DESC`;
 
     const values = [];
 

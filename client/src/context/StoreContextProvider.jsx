@@ -1,10 +1,11 @@
 import StoreContext from "./StoreContext";
-import { food_list } from "../assets/assets";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import ProductContext from "./ProductContext";
 
 //A provider like the one below supplies the data
 const StoreContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
+  const { foodItems } = useContext(ProductContext);
 
   // The backend url to be used to link frontend to backend
   const url = "http://localhost:5000";
@@ -34,9 +35,9 @@ const StoreContextProvider = ({ children }) => {
 
       if (quantity > 0) {
         //itemInfo is an array gotten from find-ing the elements of the food_list array that matches the condition
-        const itemInfo = food_list.find(
+        const itemInfo = foodItems.find(
           //The condition is to compare each _id of products (elements of the array) with itemId which is the key of the cartItems object
-          (product) => product._id.toString() === itemId.toString()
+          (product) => product.id.toString() === itemId.toString()
         );
 
         //if itemInfo array exists, the price property of the individual arrays gotten from the that was 'found' from the cartItems items are multiplied with their individual quantities
@@ -51,7 +52,6 @@ const StoreContextProvider = ({ children }) => {
   };
 
   const contextValue = {
-    food_list,
     cartItems,
     addToCart,
     removeFromCart,

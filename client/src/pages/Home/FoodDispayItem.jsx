@@ -4,12 +4,13 @@ import StoreContext from "../../context/StoreContext";
 
 const FoodDispayItem = ({ id, name, price, description, image }) => {
   //In order to save the quantity selected for each product
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  const { cartItems, addToCart, removeFromCart, url } =
+    useContext(StoreContext);
 
   return (
     <div className="w-full m-auto rounded-2xl shadow-sm shadow-gray-300 cursor-pointer">
       <div className="relative">
-        <img className="w-full rounded-t-2xl" src={image} alt="" />
+        <img className="w-full rounded-t-2xl" src={url + image} alt="" />
         {!cartItems[id] ? (
           <img
             onClick={() => addToCart(id)}
