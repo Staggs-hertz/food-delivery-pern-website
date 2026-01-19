@@ -5,6 +5,7 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import cartRouter from "./routes/cartRoutes.js";
 
 const app = express();
 
@@ -27,5 +28,6 @@ app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 //routes
 app.use("/api/products", productRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/cart", cartRouter);
 
 export default app;

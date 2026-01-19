@@ -38,28 +38,33 @@ CREATE TABLE IF NOT EXISTS users (
 
 
 -- ================================
--- CART
+-- CARTS
 -- ================================
-CREATE TABLE IF NOT EXISTS cart (
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
-    product_id INT NOT NULL,
-    quantity INT DEFAULT 1 CHECK (quantity > 0),
-
-    CONSTRAINT fk_cart_user
-      FOREIGN KEY (user_id)
-      REFERENCES users(id)
-      ON DELETE CASCADE,
-
-    CONSTRAINT fk_cart_product
-      FOREIGN KEY (product_id)
-      REFERENCES products(id)
-      ON DELETE CASCADE,
-
-    CONSTRAINT unique_cart_item
-      UNIQUE (user_id, product_id)
+CREATE TABLE IF NOT EXISTS carts (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER UNIQUE NOT NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now(),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+
+-- ================================
+-- CARTS_ITEMS
+-- ================================
+CREATE TABLE IF NOT EXISTS cart_items (
+  id SERIAL PRIMARY KEY,
+  cart_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  quantity INTEGER NOT NULL DEFAULT 1 CHECK (quantity > 0),
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now(),
+
+  FOREIGN KEY (cart_id) REFERENCES carts(id) ON DELETE CASCADE,
+  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+
+  UNIQUE (cart_id, product_id)
+);
 
 
 -- ================================
