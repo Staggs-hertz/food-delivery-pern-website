@@ -63,6 +63,8 @@ import parcel_icon from "./parcel_icon.png";
 import close_icon from "./close_icon.svg";
 import menu_icon from "./menu_icon.svg";
 
+import menu_image_sticker from "./menu-image-sticker.png";
+
 export const assets = {
   logo,
   basket_icon,
@@ -85,6 +87,7 @@ export const assets = {
   parcel_icon,
   close_icon,
   menu_icon,
+  menu_image_sticker,
 };
 
 export const menu_list = [

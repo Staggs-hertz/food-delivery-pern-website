@@ -16,6 +16,8 @@ import List from "../pages/Admin/List";
 import Add from "../pages/Admin/Add";
 import Orders from "../pages/Admin/Orders";
 import Admin from "../pages/Admin/Admin";
+import Menu from "../pages/Menu/Menu";
+import MobileApp from "../pages/Mobile-app/MobileApp";
 
 const AppRoutes = () => {
   const url = "http://localhost:5000";
@@ -29,6 +31,8 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<PlaceOrder />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/mobile-app" element={<MobileApp />} />
         </Route>
 
         {/* ADMIN PAGES (PROTECTED)  */}
