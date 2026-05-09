@@ -3,7 +3,7 @@ import { assets } from "../../assets/assets";
 const MobileAppHeroContent = () => {
   return (
     <div className="w-full pt-5 max-h-dvh">
-      <h1 className="font-semibold text-[max(4.5vw,18px)]">
+      <h1 className="font-semibold text-[max(4.3vw,20px)]">
         Download App, Order food, Enjoy every bite!
       </h1>
       <p className="text-gray-500">
